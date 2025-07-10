@@ -1,10 +1,31 @@
-<h2>Welcome, {{ request.user.username }}</h2>
-<p>Email: {{ request.user.email }}</p>
-<p>Phone: {{ request.user.phone }}</p>
-<p>Address: {{ request.user.address }}</p>
+{% extends "base.html" %}
 
-{% if request.user.profile_image %}
-    <img src="{{ request.user.profile_image.url }}" alt="Profile" width="100">
-{% endif %}
+{% block title %}Dashboard{% endblock %}
 
-<a href="{% url 'logout' %}">Logout</a>
+{% block content %}
+<div class="row">
+    <div class="col-md-8 mx-auto">
+        <h2 class="mb-4">Welcome, {{ request.user.username }}!</h2>
+
+        <div class="card mb-3">
+            <div class="row g-0">
+                {% if request.user.profile_image %}
+                    <div class="col-md-4">
+                        <img src="{{ request.user.profile_image.url }}" class="img-fluid rounded-start" alt="Profile Image">
+                    </div>
+                {% endif %}
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title">Your Profile</h5>
+                        <p class="card-text"><strong>Email:</strong> {{ request.user.email }}</p>
+                        <p class="card-text"><strong>Phone:</strong> {{ request.user.phone }}</p>
+                        <p class="card-text"><strong>Address:</strong> {{ request.user.address }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <a href="{% url 'logout' %}" class="btn btn-danger">Logout</a>
+    </div>
+</div>
+{% endblock %}
