@@ -1,28 +1,92 @@
 {% extends "base.html" %}
+{% load form_tags %}
 
 {% block title %}Sign Up{% endblock %}
 
 {% block content %}
 <div class="row justify-content-center">
-    <div class="col-md-6 col-lg-5">
+    <div class="col-md-8 col-lg-7">
         <div class="card p-4 shadow-sm border-0 rounded-4">
-            <h2 class="text-center mb-4 text-primary fw-bold">Create Your Account</h2>
+            <h2 class="text-center mb-4 text-primary fw-bold">Create a New Account</h2>
 
             <form method="post" enctype="multipart/form-data" novalidate>
                 {% csrf_token %}
-                {% for field in form %}
-                    <div class="mb-3">
-                        <label class="form-label fw-semibold">{{ field.label }}</label>
-                        {{ field }}
-                        {% if field.errors %}
-                            <div class="text-danger small">
-                                {{ field.errors|striptags }}
-                            </div>
+
+                <div class="row g-3">
+                    <div class="col-md-4 text-end">
+                        <label for="id_username" class="form-label fw-semibold mt-2">Username:</label>
+                    </div>
+                    <div class="col-md-8">
+                        {{ form.username|add_class:"form-control" }}
+                        {% if form.username.errors %}
+                            <div class="text-danger small">{{ form.username.errors|striptags }}</div>
                         {% endif %}
                     </div>
-                {% endfor %}
 
-                <button type="submit" class="btn btn-primary w-100 fw-semibold">Sign Up</button>
+                    <div class="col-md-4 text-end">
+                        <label for="id_email" class="form-label fw-semibold mt-2">Email:</label>
+                    </div>
+                    <div class="col-md-8">
+                        {{ form.email|add_class:"form-control" }}
+                        {% if form.email.errors %}
+                            <div class="text-danger small">{{ form.email.errors|striptags }}</div>
+                        {% endif %}
+                    </div>
+
+                    <div class="col-md-4 text-end">
+                        <label for="id_phone" class="form-label fw-semibold mt-2">Phone Number:</label>
+                    </div>
+                    <div class="col-md-8">
+                        {{ form.phone|add_class:"form-control" }}
+                        {% if form.phone.errors %}
+                            <div class="text-danger small">{{ form.phone.errors|striptags }}</div>
+                        {% endif %}
+                    </div>
+
+                    <div class="col-md-4 text-end">
+                        <label for="id_address" class="form-label fw-semibold mt-2">Address:</label>
+                    </div>
+                    <div class="col-md-8">
+                        {{ form.address|add_class:"form-control" }}
+                        {% if form.address.errors %}
+                            <div class="text-danger small">{{ form.address.errors|striptags }}</div>
+                        {% endif %}
+                    </div>
+
+                    <div class="col-md-4 text-end">
+                        <label for="id_profile_image" class="form-label fw-semibold mt-2">Profile Image:</label>
+                    </div>
+                    <div class="col-md-8">
+                        {{ form.profile_image|add_class:"form-control" }}
+                        {% if form.profile_image.errors %}
+                            <div class="text-danger small">{{ form.profile_image.errors|striptags }}</div>
+                        {% endif %}
+                    </div>
+
+                    <div class="col-md-4 text-end">
+                        <label for="id_password1" class="form-label fw-semibold mt-2">Password:</label>
+                    </div>
+                    <div class="col-md-8">
+                        {{ form.password1|add_class:"form-control" }}
+                        {% if form.password1.errors %}
+                            <div class="text-danger small">{{ form.password1.errors|striptags }}</div>
+                        {% endif %}
+                    </div>
+
+                    <div class="col-md-4 text-end">
+                        <label for="id_password2" class="form-label fw-semibold mt-2">Confirm Password:</label>
+                    </div>
+                    <div class="col-md-8">
+                        {{ form.password2|add_class:"form-control" }}
+                        {% if form.password2.errors %}
+                            <div class="text-danger small">{{ form.password2.errors|striptags }}</div>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class="mt-4">
+                    <button type="submit" class="btn btn-primary w-100 fw-semibold">Create Account</button>
+                </div>
             </form>
 
             <hr class="my-4">
